@@ -12,9 +12,10 @@ const partnerImages: Record<string, StaticImageData> = {
 export default async function Partners({
     params,
 }: {
-    params: Promise<{ lang: "en" | "id" }>;
+    params: Promise<{ lang: string }>;
 }) {
-    const { lang } = await params;
+    const { lang: rawLang } = await params;
+    const lang = (rawLang === "id" ? "id" : "en") as "en" | "id";
     const dict = await getDictionary(lang);
 
     return (

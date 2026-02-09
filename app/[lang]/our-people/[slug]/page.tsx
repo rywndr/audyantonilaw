@@ -13,9 +13,10 @@ const partnerImages: Record<string, StaticImageData> = {
 export default async function PartnerDetail({
     params,
 }: {
-    params: Promise<{ lang: "en" | "id"; slug: string }>;
+    params: Promise<{ lang: string; slug: string }>;
 }) {
-    const { lang, slug } = await params;
+    const { lang: rawLang, slug } = await params;
+    const lang = (rawLang === "id" ? "id" : "en") as "en" | "id";
     const dict = await getDictionary(lang);
 
     const partner = dict.partners.list.find((p) => p.id === slug);
