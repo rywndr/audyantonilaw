@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -15,10 +14,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    // Check if on the home page
+    // check if on the home page
     const isHomePage = pathname === `/${lang}`;
 
-    // Prevent scrolling
+    // prevent scrolling when menu is open
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = "hidden";
@@ -45,12 +44,25 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 <div className="container mx-auto flex h-20 items-center justify-between px-6 md:px-12">
                     <Link
                         href={`/${lang}`}
-                        className={`relative z-50 font-serif text-2xl font-bold tracking-tight transition-colors duration-300 md:text-3xl ${textColorClass}`}
+                        className={`relative z-50 flex items-end gap-3 transition-colors duration-300 ${textColorClass}`}
                     >
-                        A&A
+                        {/* a&a logo */}
+                        <span className="font-serif text-2xl font-bold tracking-tight leading-none md:text-3xl">
+                            A&A
+                        </span>
+
+                        {/* firm name and subtitle - hidden on mobile */}
+                        <div className="hidden sm:flex flex-col leading-none pb-0.5">
+                            <span className="font-serif text-sm font-semibold tracking-wide md:text-base">
+                                AUDY & ANTONI
+                            </span>
+                            <span className="text-[9px] font-light tracking-[0.15em] opacity-75 md:text-[10px] mt-0.5">
+                                COUNSELLORS AT LAW
+                            </span>
+                        </div>
                     </Link>
 
-                    {/* Hamburger Menu */}
+                    {/* hamburger menu */}
                     {!isMenuOpen && (
                         <button
                             className="group relative z-50 flex h-10 w-10 flex-col items-end justify-center gap-1.5 p-1 focus:outline-none"
@@ -71,7 +83,6 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     )}
                 </div>
             </nav>
-
             <Sidebar
                 isOpen={isMenuOpen}
                 onClose={() => setIsMenuOpen(false)}
