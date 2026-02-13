@@ -64,7 +64,7 @@ export default async function PracticeArea({
             {/* Business Sectors Section */}
             <section className="relative overflow-hidden bg-[#0A0A0A] py-20 md:py-32">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 opacity-[0.15] bg-[url('/images/backgrounds/noise.png')] mix-blend-overlay" />
+                    <div className="absolute inset-0 opacity-[0.15]" />
 
                     <div
                         className="absolute inset-0 opacity-[0.03]"

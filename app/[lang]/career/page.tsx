@@ -77,7 +77,7 @@ export default async function Career({
                             src={contentBgImage}
                             alt=""
                             fill
-                            className="object-cover opacity-[0.03]"
+                            className="object-cover opacity-[0.05]"
                         />
                     </div>
                 )}
@@ -99,7 +99,7 @@ export default async function Career({
 
                         {/* How to Apply */}
                         <FadeIn delay={0.2} direction="up" distance={30}>
-                            <div className="rounded-2xl border border-gray-100 bg-gray-50 p-8">
+                            <div className="rounded-2xl border border-gray-100 p-8">
                                 <h3 className="mb-4 text-xl font-semibold text-gray-900">
                                     {dict.career.applyTitle}
                                 </h3>
