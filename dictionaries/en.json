@@ -61,7 +61,7 @@
                 "id": "audy-rahmat",
                 "name": "AUDY RAHMAT",
                 "title": "Partner",
-                "email": "audyrahmat@audyantoni.com",
+                "email": "",
                 "bio": [
                     "Audy Rahmat is a Lawyer with decades of experience in corporate advisory, dispute resolution, and litigation. He oversees the Firm's general corporate matters as well as its dispute resolution and litigation practice, with a focus on complex commercial disputes arising from high-value commercial agreements and business transactions.",
                     "He has acted at all levels of proceedings before Indonesian courts, including the District Courts for general civil and criminal matters, the Commercial Courts for bankruptcy, suspension of debt payment obligations (PKPU), and intellectual property disputes, as well as the Industrial Relations Courts for employment-related disputes. He also regularly advises and represents clients during criminal proceedings at the investigation stage before law enforcement authorities.",
@@ -81,7 +81,7 @@
                 "id": "andelton-antoni",
                 "name": "ANDELTON ANTONI",
                 "title": "Partner",
-                "email": "antoni@audyantoni.com",
+                "email": "",
                 "bio": [
                     "Andelton Antoni is an Indonesian lawyer and legal consultant with extensive experience in corporate advisory and litigation. He has practised at several leading law firms and has also served as in-house legal counsel within the mining and energy sector in Indonesia. His professional background combines transactional advisory, regulatory compliance, and dispute resolution, enabling him to advise clients on matters that involve complex commercial and operational considerations.",
                     "He regularly assists domestic and foreign companies in relation to investment activities, corporate structuring, commercial transactions, and dispute resolution before Indonesian courts and in international arbitration proceedings. His practice spans a range of industries, with particular exposure to the energy, mining, and infrastructure sectors.",
@@ -206,14 +206,11 @@
     "contact": {
         "title": "Contact Us",
         "subtitle": "We're Here to Help",
-        "address": "Jl. Sungai Sambas 3 No.5, RT.4/RW.5, Kramat Pela, Kebayoran. Baru, Jakarta Selatan, Daerah Khusus Jakarta, 12130",
+        "address": "",
         "addressLabel": "Office Address",
-        "phone": "+62 21 7228515",
+        "phone": "",
         "phoneLabel": "Phone",
-        "email": "info@aacounselors.co.id",
         "emailLabel": "Email",
-        "hours": "Monday – Friday, 09:00 – 17:00 WIB",
-        "hoursLabel": "Office Hours",
         "formTitle": "Send Us a Message",
         "formName": "Full Name",
         "formEmail": "Email Address",
@@ -233,37 +230,9 @@
         "subtitle": "Join Our Team",
         "headerText": "Build Your Legal Career With Us",
         "description": "We are always looking for talented legal professionals who share our commitment to excellence, integrity, and client service. If you are passionate about the law and want to grow your career in a dynamic and supportive environment, we invite you to explore opportunities with us.",
-        "whyJoinTitle": "Why Join AUDY & ANTONI?",
-        "whyJoinItems": [
-            "Work on complex, high-value matters across corporate and litigation practice areas",
-            "Collaborate with experienced practitioners in a collegial environment",
-            "Develop your expertise through hands-on experience and mentorship",
-            "Be part of a firm that values professionalism, integrity, and excellence"
-        ],
-        "requirementsTitle": "What We Look For",
-        "requirementsItems": [
-            "Strong academic credentials and legal qualifications",
-            "Excellent analytical, research, and writing skills",
-            "Proficiency in English and Indonesian",
-            "Professional demeanor and commitment to client service",
-            "Ability to work effectively both independently and as part of a team"
-        ],
         "applyTitle": "How to Apply",
         "applyDescription": "If you are interested in joining our team, please send your CV, cover letter, and academic transcripts to the email address below. We review applications on an ongoing basis and will contact suitable candidates for interviews.",
         "emailLabel": "Send your application to",
-        "email": "career@audyantoni.com",
-        "formTitle": "Submit Your Application",
-        "formName": "Full Name",
-        "formEmail": "Email Address",
-        "formPhone": "Phone Number",
-        "formPosition": "Position of Interest",
-        "formMessage": "Tell us about yourself",
-        "formSubmit": "Submit Application",
-        "positionOptions": [
-            "Associate",
-            "Senior Associate",
-            "Legal Assistant",
-            "Internship"
-        ]
+        "email": ""
     }
 }

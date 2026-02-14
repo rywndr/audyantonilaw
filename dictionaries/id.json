@@ -61,7 +61,7 @@
                 "id": "audy-rahmat",
                 "name": "AUDY RAHMAT",
                 "title": "Partner",
-                "email": "audyrahmat@audyantoni.com",
+                "email": "",
                 "bio": [
                     "Audy Rahmat adalah Advokat dengan pengalaman puluhan tahun dalam nasihat korporasi, penyelesaian sengketa, dan litigasi. Ia mengawasi urusan korporasi umum Firma serta praktik penyelesaian sengketa dan litigasi, dengan fokus pada sengketa komersial kompleks yang timbul dari perjanjian komersial bernilai tinggi dan transaksi bisnis.",
                     "Ia telah bertindak di semua tingkat proses persidangan di pengadilan Indonesia, termasuk Pengadilan Negeri untuk perkara perdata dan pidana umum, Pengadilan Niaga untuk kepailitan, penundaan kewajiban pembayaran utang (PKPU), dan sengketa kekayaan intelektual, serta Pengadilan Hubungan Industrial untuk sengketa terkait ketenagakerjaan. Ia juga secara rutin memberikan nasihat dan mewakili klien selama proses pidana pada tahap penyidikan di hadapan aparat penegak hukum.",
@@ -81,7 +81,7 @@
                 "id": "andelton-antoni",
                 "name": "ANDELTON ANTONI",
                 "title": "Partner",
-                "email": "antoni@audyantoni.com",
+                "email": "",
                 "bio": [
                     "Andelton Antoni adalah advokat dan konsultan hukum Indonesia dengan pengalaman luas dalam nasihat korporasi dan litigasi. Ia telah berpraktik di beberapa firma hukum terkemuka dan juga pernah menjabat sebagai penasihat hukum internal di sektor pertambangan dan energi di Indonesia. Latar belakang profesionalnya menggabungkan nasihat transaksional, kepatuhan regulasi, dan penyelesaian sengketa, memungkinkannya memberikan nasihat kepada klien mengenai urusan yang melibatkan pertimbangan komersial dan operasional yang kompleks.",
                     "Ia secara rutin membantu perusahaan domestik dan asing terkait kegiatan investasi, merger dan akuisisi, strukturisasi korporasi, transaksi komersial, dan penyelesaian sengketa di pengadilan Indonesia dan dalam proses arbitrase internasional. Praktiknya mencakup berbagai industri, dengan eksposur khusus pada sektor energi, pertambangan, dan infrastruktur.",
@@ -204,21 +204,18 @@
     "contact": {
         "title": "Hubungi Kami",
         "subtitle": "Kami Siap Membantu",
-        "address": "Jl. Sungai Sambas 3 No.5, RT.4/RW.5, Kramat Pela, Kebayoran. Baru, Jakarta Selatan, Daerah Khusus Jakarta, 12130",
+        "address": "",
         "addressLabel": "Alamat Kantor",
-        "phone": "+62 21 7228515",
+        "phone": "",
         "phoneLabel": "Telepon",
-        "email": "info@aacounselors.co.id",
         "emailLabel": "Email",
-        "hours": "Senin – Jumat, 09:00 – 17:00 WIB",
-        "hoursLabel": "Jam Kantor",
         "formTitle": "Kirim Pesan kepada Kami",
         "formName": "Nama Lengkap",
         "formEmail": "Alamat Email",
         "formPhone": "Nomor Telepon",
         "formSubject": "Subjek",
         "formMessage": "Bagaimana kami dapat membantu Anda?",
-        "formSubmit": "Kirim Pertanyaan",
+        "formSubmit": "Kirim Pesan",
         "mapTitle": "Lokasi Kami"
     },
     "cta": {
@@ -231,37 +228,8 @@
         "subtitle": "Bergabung dengan Tim Kami",
         "headerText": "Bangun Karir Hukum Anda Bersama Kami",
         "description": "Kami selalu mencari profesional hukum berbakat yang memiliki komitmen terhadap keunggulan, integritas, dan layanan klien. Jika Anda memiliki passion di bidang hukum dan ingin mengembangkan karir di lingkungan yang dinamis dan mendukung, kami mengundang Anda untuk mengeksplorasi peluang bersama kami.",
-        "whyJoinTitle": "Mengapa Bergabung dengan AUDY & ANTONI?",
-        "whyJoinItems": [
-            "Menangani perkara kompleks dan bernilai tinggi di bidang praktik korporasi dan litigasi",
-            "Berkolaborasi dengan praktisi berpengalaman dalam lingkungan yang kolegial",
-            "Mengembangkan keahlian melalui pengalaman langsung dan bimbingan",
-            "Menjadi bagian dari firma yang menjunjung profesionalisme, integritas, dan keunggulan"
-        ],
-        "requirementsTitle": "Yang Kami Cari",
-        "requirementsItems": [
-            "Kredensial akademik dan kualifikasi hukum yang kuat",
-            "Kemampuan analitis, riset, dan penulisan yang sangat baik",
-            "Kemahiran berbahasa Inggris dan Indonesia",
-            "Sikap profesional dan komitmen terhadap layanan klien",
-            "Kemampuan bekerja secara efektif baik mandiri maupun dalam tim"
-        ],
         "applyTitle": "Cara Melamar",
         "applyDescription": "Jika Anda tertarik untuk bergabung dengan tim kami, silakan kirimkan CV, surat lamaran, dan transkrip akademik ke alamat email di bawah ini. Kami meninjau lamaran secara berkelanjutan dan akan menghubungi kandidat yang sesuai untuk wawancara.",
-        "emailLabel": "Kirim lamaran Anda ke",
-        "email": "career@audyantoni.com",
-        "formTitle": "Kirim Lamaran Anda",
-        "formName": "Nama Lengkap",
-        "formEmail": "Alamat Email",
-        "formPhone": "Nomor Telepon",
-        "formPosition": "Posisi yang Diminati",
-        "formMessage": "Ceritakan tentang diri Anda",
-        "formSubmit": "Kirim Lamaran",
-        "positionOptions": [
-            "Associate",
-            "Senior Associate",
-            "Asisten Hukum",
-            "Magang"
-        ]
+        "emailLabel": "Kirim lamaran Anda ke"
     }
 }
