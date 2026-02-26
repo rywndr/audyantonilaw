@@ -71,8 +71,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         <Image
                             src="/images/logo.png"
                             alt="Audy & Antoni"
-                            width={48}
-                            height={48}
+                            width={168}
+                            height={168}
                             className="h-12 w-auto md:h-14"
                             priority
                         />
