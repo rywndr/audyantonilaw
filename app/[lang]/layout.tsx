@@ -10,10 +10,10 @@ const lora = Lora({
     weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = "https://www.audyantonilaw.com";
+const SITE_URL = "https://www.audyantonilaw.com";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title: {
         default: "A&A Counsellors at Law | Audy & Antoni",
         template: "%s | A&A Counsellors at Law",
@@ -38,16 +38,12 @@ export const metadata: Metadata = {
     authors: [{ name: "AUDY & ANTONI Counsellors at Law" }],
     creator: "AUDY & ANTONI Counsellors at Law",
     publisher: "AUDY & ANTONI Counsellors at Law",
-    formatDetection: {
-        email: false,
-        address: false,
-        telephone: false,
-    },
+    formatDetection: { email: false, address: false, telephone: false },
     openGraph: {
         type: "website",
         locale: "en_US",
         alternateLocale: "id_ID",
-        url: siteUrl,
+        url: SITE_URL,
         siteName: "A&A Counsellors at Law",
         title: "A&A Counsellors at Law | Audy & Antoni",
         description:
@@ -79,14 +75,10 @@ export const metadata: Metadata = {
             "max-snippet": -1,
         },
     },
-    // verification: {
-    //     google: "your-google-verification-code",
-    //     yandex: "your-yandex-verification-code",
-    // },
     alternates: {
         languages: {
-            en: `${siteUrl}/en`,
-            id: `${siteUrl}/id`,
+            en: `${SITE_URL}/en`,
+            id: `${SITE_URL}/id`,
         },
     },
 };
@@ -106,11 +98,7 @@ export default async function RootLayout({
         <html lang={lang}>
             <head>
                 <link rel="icon" href="/favicon.ico" sizes="any" />
-                <link
-                    rel="apple-touch-icon"
-                    href="/apple-touch-icon.png"
-                    sizes="180x180"
-                />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
                 <meta name="theme-color" content="#000000" />
             </head>
             <body className={`${lora.variable} antialiased`}>

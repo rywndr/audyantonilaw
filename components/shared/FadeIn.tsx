@@ -13,6 +13,24 @@ interface FadeInProps {
     once?: boolean;
 }
 
+function getInitialOffset(
+    direction: FadeInProps["direction"],
+    distance: number,
+): { x?: number; y?: number } {
+    switch (direction) {
+        case "up":
+            return { y: distance };
+        case "down":
+            return { y: -distance };
+        case "left":
+            return { x: distance };
+        case "right":
+            return { x: -distance };
+        default:
+            return {};
+    }
+}
+
 export default function FadeIn({
     children,
     className = "",
@@ -22,35 +40,21 @@ export default function FadeIn({
     distance = 30,
     once = true,
 }: FadeInProps) {
-    const getInitialPosition = () => {
-        switch (direction) {
-            case "up":
-                return { y: distance };
-            case "down":
-                return { y: -distance };
-            case "left":
-                return { x: distance };
-            case "right":
-                return { x: -distance };
-            case "none":
-                return {};
-            default:
-                return { y: distance };
-        }
-    };
-
     return (
         <motion.div
             initial={{
                 opacity: 0,
-                ...getInitialPosition(),
+                ...getInitialOffset(direction, distance),
             }}
             whileInView={{
                 opacity: 1,
                 x: 0,
                 y: 0,
             }}
-            viewport={{ once, margin: "-50px" }}
+            // A positive margin value means the animation only triggers after the element
+            // has entered the viewport by that amount — preventing all elements from
+            // firing the moment the user begins scrolling past the section boundary.
+            viewport={{ once, margin: "0px 0px -80px 0px" }}
             transition={{
                 duration,
                 delay,
@@ -63,7 +67,7 @@ export default function FadeIn({
     );
 }
 
-// Hero variant - animates on mount, not on scroll
+// Animates on mount rather than on scroll — used for above-the-fold hero content.
 interface FadeInHeroProps {
     children: ReactNode;
     className?: string;
@@ -81,28 +85,11 @@ export function FadeInHero({
     direction = "up",
     distance = 30,
 }: FadeInHeroProps) {
-    const getInitialPosition = () => {
-        switch (direction) {
-            case "up":
-                return { y: distance };
-            case "down":
-                return { y: -distance };
-            case "left":
-                return { x: distance };
-            case "right":
-                return { x: -distance };
-            case "none":
-                return {};
-            default:
-                return { y: distance };
-        }
-    };
-
     return (
         <motion.div
             initial={{
                 opacity: 0,
-                ...getInitialPosition(),
+                ...getInitialOffset(direction, distance),
             }}
             animate={{
                 opacity: 1,
@@ -136,7 +123,7 @@ export function FadeInStagger({
         <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "0px 0px -80px 0px" }}
             variants={{
                 visible: {
                     transition: {

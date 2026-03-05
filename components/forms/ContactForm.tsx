@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm, type FieldErrors, type Resolver } from "react-hook-form";
 import FadeIn from "@/components/shared/FadeIn";
+import { ArrowRightIcon, SpinnerIcon, CheckCircleIcon } from "@/components/icons";
 import { contactFormSchema, type ContactFormData } from "@/lib/schemas/contact";
 import type { ContactApiResponse } from "@/lib/types/contact";
 
@@ -14,10 +15,16 @@ interface ContactFormProps {
     formSubject: string;
     formMessage: string;
     formSubmit: string;
+    formSending: string;
+    formSuccessTitle: string;
+    formSuccessBody: string;
+    formSuccessReset: string;
 }
 
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
+// Inline Zod resolver avoids the @hookform/resolvers package dependency while
+// keeping validation logic co-located with the schema it validates against.
 const zodResolver: Resolver<ContactFormData> = async (values) => {
     const result = contactFormSchema.safeParse(values);
 
@@ -48,6 +55,46 @@ async function sendContactEmail(
     return response.json() as Promise<ContactApiResponse>;
 }
 
+const INPUT_CLASS =
+    "w-full border-0 border-b-2 border-gray-200 bg-transparent px-0 py-3 text-lg text-gray-900 outline-none transition-colors placeholder:text-gray-300 focus:border-gray-900 focus:ring-0 disabled:opacity-50";
+const ERROR_CLASS = "mt-1.5 text-xs text-red-600";
+const LABEL_CLASS =
+    "mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500";
+
+interface FormFieldProps {
+    id: keyof ContactFormData;
+    label: string;
+    type?: string;
+    error?: string;
+    disabled?: boolean;
+    register: ReturnType<typeof useForm<ContactFormData>>["register"];
+}
+
+function FormField({
+    id,
+    label,
+    type = "text",
+    error,
+    disabled,
+    register,
+}: FormFieldProps) {
+    return (
+        <div>
+            <label htmlFor={id} className={LABEL_CLASS}>
+                {label}
+            </label>
+            <input
+                type={type}
+                id={id}
+                disabled={disabled}
+                className={INPUT_CLASS}
+                {...register(id)}
+            />
+            {error && <p className={ERROR_CLASS}>{error}</p>}
+        </div>
+    );
+}
+
 export default function ContactForm({
     formTitle,
     formName,
@@ -56,6 +103,10 @@ export default function ContactForm({
     formSubject,
     formMessage,
     formSubmit,
+    formSending,
+    formSuccessTitle,
+    formSuccessBody,
+    formSuccessReset,
 }: ContactFormProps) {
     const [status, setStatus] = useState<SubmitStatus>("idle");
     const [serverError, setServerError] = useState("");
@@ -67,13 +118,7 @@ export default function ContactForm({
         formState: { errors },
     } = useForm<ContactFormData>({
         resolver: zodResolver,
-        defaultValues: {
-            name: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-        },
+        defaultValues: { name: "", email: "", phone: "", subject: "", message: "" },
     });
 
     const isSubmitting = status === "submitting";
@@ -84,27 +129,18 @@ export default function ContactForm({
 
         try {
             const result = await sendContactEmail(data);
-
             if (result.success) {
                 setStatus("success");
                 reset();
             } else {
                 setStatus("error");
-                setServerError(
-                    result.error ?? "Something went wrong. Please try again.",
-                );
+                setServerError(result.error ?? "Something went wrong. Please try again.");
             }
         } catch {
             setStatus("error");
-            setServerError(
-                "Unable to send your message. Please check your connection and try again.",
-            );
+            setServerError("Unable to send your message. Please check your connection and try again.");
         }
     }
-
-    const inputClassName =
-        "w-full border-0 border-b-2 border-gray-200 bg-transparent px-0 py-3 text-lg text-gray-900 outline-none transition-colors placeholder:text-gray-300 focus:border-gray-900 focus:ring-0 disabled:opacity-50";
-    const errorClassName = "mt-1.5 text-xs text-red-600";
 
     return (
         <div>
@@ -120,40 +156,19 @@ export default function ContactForm({
             <FadeIn delay={0.1}>
                 {status === "success" ? (
                     <div className="rounded-lg border border-green-200 bg-green-50 p-8 text-center">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="mx-auto mb-4 h-10 w-10 text-green-600"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                            />
-                        </svg>
-                        <p className="text-lg font-medium text-green-900">
-                            Thank you for your inquiry.
-                        </p>
-                        <p className="mt-2 text-sm text-green-700">
-                            We will get back to you as soon as possible.
-                        </p>
+                        <CheckCircleIcon className="mx-auto mb-4 h-10 w-10 text-green-600" />
+                        <p className="text-lg font-medium text-green-900">{formSuccessTitle}</p>
+                        <p className="mt-2 text-sm text-green-700">{formSuccessBody}</p>
                         <button
                             type="button"
                             onClick={() => setStatus("idle")}
                             className="mt-6 text-sm font-medium uppercase tracking-widest text-green-800 underline underline-offset-4 transition-colors hover:text-green-600"
                         >
-                            Send another message
+                            {formSuccessReset}
                         </button>
                     </div>
                 ) : (
-                    <form
-                        onSubmit={handleSubmit(onValid)}
-                        noValidate
-                        className="space-y-8"
-                    >
+                    <form onSubmit={handleSubmit(onValid)} noValidate className="space-y-8">
                         {status === "error" && serverError && (
                             <div className="rounded-lg border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
                                 {serverError}
@@ -161,109 +176,54 @@ export default function ContactForm({
                         )}
 
                         <div className="grid gap-8 sm:grid-cols-2">
-                            <div className="group">
-                                <label
-                                    htmlFor="name"
-                                    className="mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    {formName}
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    disabled={isSubmitting}
-                                    className={inputClassName}
-                                    {...register("name")}
-                                />
-                                {errors.name && (
-                                    <p className={errorClassName}>
-                                        {errors.name.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div className="group">
-                                <label
-                                    htmlFor="email"
-                                    className="mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    {formEmail}
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    disabled={isSubmitting}
-                                    className={inputClassName}
-                                    {...register("email")}
-                                />
-                                {errors.email && (
-                                    <p className={errorClassName}>
-                                        {errors.email.message}
-                                    </p>
-                                )}
-                            </div>
+                            <FormField
+                                id="name"
+                                label={formName}
+                                error={errors.name?.message}
+                                disabled={isSubmitting}
+                                register={register}
+                            />
+                            <FormField
+                                id="email"
+                                label={formEmail}
+                                type="email"
+                                error={errors.email?.message}
+                                disabled={isSubmitting}
+                                register={register}
+                            />
                         </div>
 
                         <div className="grid gap-8 sm:grid-cols-2">
-                            <div className="group">
-                                <label
-                                    htmlFor="phone"
-                                    className="mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    {formPhone}
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    disabled={isSubmitting}
-                                    className={inputClassName}
-                                    {...register("phone")}
-                                />
-                                {errors.phone && (
-                                    <p className={errorClassName}>
-                                        {errors.phone.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div className="group">
-                                <label
-                                    htmlFor="subject"
-                                    className="mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500"
-                                >
-                                    {formSubject}
-                                </label>
-                                <input
-                                    type="text"
-                                    id="subject"
-                                    disabled={isSubmitting}
-                                    className={inputClassName}
-                                    {...register("subject")}
-                                />
-                                {errors.subject && (
-                                    <p className={errorClassName}>
-                                        {errors.subject.message}
-                                    </p>
-                                )}
-                            </div>
+                            <FormField
+                                id="phone"
+                                label={formPhone}
+                                type="tel"
+                                error={errors.phone?.message}
+                                disabled={isSubmitting}
+                                register={register}
+                            />
+                            <FormField
+                                id="subject"
+                                label={formSubject}
+                                error={errors.subject?.message}
+                                disabled={isSubmitting}
+                                register={register}
+                            />
                         </div>
 
-                        <div className="group">
-                            <label
-                                htmlFor="message"
-                                className="mb-3 block text-sm font-medium uppercase tracking-wider text-gray-500"
-                            >
+                        <div>
+                            <label htmlFor="message" className={LABEL_CLASS}>
                                 {formMessage}
                             </label>
                             <textarea
                                 id="message"
                                 rows={4}
                                 disabled={isSubmitting}
-                                className={`${inputClassName} resize-none`}
+                                className={`${INPUT_CLASS} resize-none`}
                                 {...register("message")}
                             />
                             {errors.message && (
-                                <p className={errorClassName}>
-                                    {errors.message.message}
-                                </p>
+                                <p className={ERROR_CLASS}>{errors.message.message}</p>
                             )}
                         </div>
 
@@ -275,45 +235,13 @@ export default function ContactForm({
                             >
                                 {isSubmitting ? (
                                     <>
-                                        Sending...
-                                        <svg
-                                            className="h-5 w-5 animate-spin"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <circle
-                                                className="opacity-25"
-                                                cx="12"
-                                                cy="12"
-                                                r="10"
-                                                stroke="currentColor"
-                                                strokeWidth="4"
-                                            />
-                                            <path
-                                                className="opacity-75"
-                                                fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                                            />
-                                        </svg>
+                                        {formSending}
+                                        <SpinnerIcon className="h-5 w-5" />
                                     </>
                                 ) : (
                                     <>
                                         {formSubmit}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth={1.5}
-                                            stroke="currentColor"
-                                            className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                                            />
-                                        </svg>
+                                        <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                                     </>
                                 )}
                             </button>

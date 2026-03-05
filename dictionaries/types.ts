@@ -9,6 +9,11 @@ export type Partner = {
     languages?: string[];
 };
 
+export type PracticeArea = {
+    name: string;
+    description: string;
+};
+
 export type Dictionary = {
     navigation: {
         home: string;
@@ -17,6 +22,8 @@ export type Dictionary = {
         practices: string;
         career: string;
         contact: string;
+        closeMenu: string;
+        language: string;
     };
     home: {
         title: string;
@@ -52,6 +59,8 @@ export type Dictionary = {
         subtitle: string;
         headerText: string;
         learnMore: string;
+        sidebarLabel: string;
+        sidebarClose: string;
         sectors: {
             label: string;
             title: string;
@@ -60,31 +69,21 @@ export type Dictionary = {
         };
         litigation: {
             title: string;
-            areas: {
-                name: string;
-                description: string;
-            }[];
+            areas: PracticeArea[];
         };
         corporate: {
             title: string;
-            areas: {
-                name: string;
-                description: string;
-            }[];
+            areas: PracticeArea[];
         };
     };
     contact: {
         title: string;
         subtitle: string;
-        description: string;
         address: string;
         addressLabel: string;
         phone: string;
         phoneLabel: string;
-        email: string;
         emailLabel: string;
-        hours: string;
-        hoursLabel: string;
         formTitle: string;
         formName: string;
         formEmail: string;
@@ -92,6 +91,10 @@ export type Dictionary = {
         formSubject: string;
         formMessage: string;
         formSubmit: string;
+        formSending: string;
+        formSuccessTitle: string;
+        formSuccessBody: string;
+        formSuccessReset: string;
         mapTitle: string;
     };
     cta: {
@@ -104,21 +107,9 @@ export type Dictionary = {
         subtitle: string;
         headerText: string;
         description: string;
-        whyJoinTitle: string;
-        whyJoinItems: string[];
-        requirementsTitle: string;
-        requirementsItems: string[];
         applyTitle: string;
         applyDescription: string;
         emailLabel: string;
         email: string;
-        formTitle: string;
-        formName: string;
-        formEmail: string;
-        formPhone: string;
-        formPosition: string;
-        formMessage: string;
-        formSubmit: string;
-        positionOptions: string[];
     };
 };

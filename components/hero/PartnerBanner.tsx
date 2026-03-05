@@ -8,10 +8,10 @@ interface PartnerBannerProps {
 
 export default function PartnerBanner({ title, name }: PartnerBannerProps) {
     return (
-        <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden md:min-h-[50vh]">
+        <section className="relative flex min-h-[50vh] items-center justify-center overflow-hidden">
             <div className="absolute inset-0 -z-10 bg-black">
                 <Image
-                    src="/images/banners/batik-profile-banner.webp"
+                    src="/images/backgrounds/batik-team-bg.webp"
                     alt="Batik Background"
                     fill
                     className="object-cover opacity-50"

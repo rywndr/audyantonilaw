@@ -2,33 +2,27 @@ import { getDictionary } from "@/utils/get-dictionary";
 import { getCanonicalUrl } from "@/utils/canonical";
 import Image from "next/image";
 import BatikFooter from "@/components/layout/BatikFooter";
-import PracticeAreaClient from "@/components/shared/PracticeAreaClient";
 import PageHero from "@/components/hero/PageHero";
+import PracticeAreaList from "@/components/practice-area/PracticeAreaList";
 import BusinessSectors from "@/components/shared/BusinessSectors";
 import type { Metadata } from "next";
 
-export async function generateMetadata({
-    params,
-}: {
-    params: Promise<{ lang: string }>;
-}): Promise<Metadata> {
-    const { lang: rawLang } = await params;
-    const lang = (rawLang === "id" ? "id" : "en") as "en" | "id";
+type PageProps = { params: Promise<{ lang: string }> };
 
+function resolveLocale(raw: string): "en" | "id" {
+    return raw === "id" ? "id" : "en";
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { lang: rawLang } = await params;
     return {
-        alternates: {
-            canonical: getCanonicalUrl(lang, "practice-area"),
-        },
+        alternates: { canonical: getCanonicalUrl(resolveLocale(rawLang), "practice-area") },
     };
 }
 
-export default async function PracticeArea({
-    params,
-}: {
-    params: Promise<{ lang: string }>;
-}) {
+export default async function PracticeArea({ params }: PageProps) {
     const { lang: rawLang } = await params;
-    const lang = (rawLang === "id" ? "id" : "en") as "en" | "id";
+    const lang = resolveLocale(rawLang);
     const dict = await getDictionary(lang);
 
     return (
@@ -39,13 +33,8 @@ export default async function PracticeArea({
                 subtitle={dict.practices.subtitle}
             />
 
-            {/* Practice Areas */}
             <div className="relative" style={{ clipPath: "inset(0)" }}>
-                {/* Background Image */}
-                <div
-                    className="fixed inset-0 pointer-events-none z-0"
-                    aria-hidden="true"
-                >
+                <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
                     <Image
                         src="/images/backgrounds/CONTENT-BG-3.webp"
                         alt=""
@@ -54,13 +43,15 @@ export default async function PracticeArea({
                     />
                 </div>
 
-                <PracticeAreaClient
+                <PracticeAreaList
                     headerText={dict.practices.headerText}
                     corporateTitle={dict.practices.corporate.title}
                     corporateAreas={dict.practices.corporate.areas}
                     litigationTitle={dict.practices.litigation.title}
                     litigationAreas={dict.practices.litigation.areas}
                     learnMoreText={dict.practices.learnMore}
+                    sidebarLabel={dict.practices.sidebarLabel}
+                    sidebarCloseLabel={dict.practices.sidebarClose}
                 />
             </div>
 

@@ -109,7 +109,7 @@ export default function Sidebar({ isOpen, onClose, lang, dict }: SidebarProps) {
                                     onClick={onClose}
                                     className="group flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-gray-500 transition-colors hover:text-gray-900"
                                 >
-                                    <span>Close</span>
+                                    <span>{dict.navigation.closeMenu}</span>
                                 </button>
                             </div>
 
@@ -147,7 +147,7 @@ export default function Sidebar({ isOpen, onClose, lang, dict }: SidebarProps) {
                                 {/* Language Switcher */}
                                 <div className="mb-8">
                                     <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
-                                        Language
+                                        {dict.navigation.language}
                                     </p>
                                     <div className="flex gap-6">
                                         <Link

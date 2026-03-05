@@ -9,17 +9,56 @@ interface BusinessSectorsProps {
     sectors: string[];
 }
 
+interface SectorRowProps {
+    sectorName: string;
+}
+
+function SectorRow({ sectorName }: SectorRowProps) {
+    const sectorKey = getSectorKey(sectorName);
+    const imageSrc = getBusinessSectorImage(sectorKey);
+
+    return (
+        <div className="group flex items-center gap-5 rounded-sm py-6 transition-all duration-500 hover:-mx-6 hover:bg-white/[0.02] hover:px-6">
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/20 transition-all duration-300 group-hover:ring-[#C8A97E]">
+                <Image
+                    src={imageSrc}
+                    alt={sectorName}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+            </div>
+            <h4 className="flex-1 font-serif text-lg tracking-wide text-neutral-300 transition-colors group-hover:text-white">
+                {sectorName}
+            </h4>
+        </div>
+    );
+}
+
+// Splits sectors into two balanced columns for desktop layout.
+// Half-and-half split preserves visual symmetry regardless of total count.
+function SectorColumn({ sectors }: { sectors: string[] }) {
+    return (
+        <div className="divide-y divide-white/10">
+            {sectors.map((name) => (
+                <SectorRow key={name} sectorName={name} />
+            ))}
+        </div>
+    );
+}
+
 export default function BusinessSectors({
     label,
     title,
     description,
     sectors,
 }: BusinessSectorsProps) {
+    const midpoint = Math.ceil(sectors.length / 2);
+    const leftSectors = sectors.slice(0, midpoint);
+    const rightSectors = sectors.slice(midpoint);
+
     return (
         <section className="relative overflow-hidden bg-[#0A0A0A] py-20 md:py-32">
             <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 opacity-[0.15]" />
-
                 <div
                     className="absolute inset-0 opacity-[0.03]"
                     style={{
@@ -27,12 +66,10 @@ export default function BusinessSectors({
                         backgroundSize: "80px 80px",
                     }}
                 />
-
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/80" />
             </div>
 
             <div className="container relative z-10 mx-auto max-w-7xl px-6 md:px-12">
-                {/* Section Header */}
                 <FadeIn direction="up" distance={30}>
                     <div className="mb-16 text-center md:mb-24">
                         <p
@@ -51,73 +88,13 @@ export default function BusinessSectors({
                     </div>
                 </FadeIn>
 
-                {/* Sectors Grid */}
                 <FadeIn delay={0.2} direction="up" distance={40}>
-                    <div className="grid gap-x-12 gap-y-0 md:grid-cols-2 lg:gap-x-24">
-                        {/* Left Column */}
-                        <div className="divide-y divide-white/10 border-t border-b border-white/10 md:border-none">
-                            {sectors.slice(0, 9).map((sectorName, index) => {
-                                const sectorKey = getSectorKey(sectorName);
-                                const imageSrc =
-                                    getBusinessSectorImage(sectorKey);
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className="group flex items-center gap-5 py-6 transition-all duration-500 hover:px-6 hover:-mx-6 rounded-sm hover:bg-white/[0.02]"
-                                    >
-                                        {/* Sector Image/Icon */}
-                                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/20 transition-all duration-300 group-hover:ring-[#C8A97E]">
-                                            <Image
-                                                src={imageSrc}
-                                                alt={sectorName}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
-                                        </div>
-
-                                        {/* Sector Name */}
-                                        <div className="flex-1">
-                                            <h4 className="font-serif text-lg tracking-wide text-neutral-300 transition-colors group-hover:text-white">
-                                                {sectorName}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                    <div className="grid gap-x-12 md:grid-cols-2 lg:gap-x-24">
+                        <div className="border-b border-t border-white/10 md:border-none">
+                            <SectorColumn sectors={leftSectors} />
                         </div>
-
-                        {/* Right Column */}
-                        <div className="divide-y divide-white/10 border-b border-white/10 md:border-none">
-                            {sectors.slice(9).map((sectorName, index) => {
-                                const sectorKey = getSectorKey(sectorName);
-                                const imageSrc =
-                                    getBusinessSectorImage(sectorKey);
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className="group flex items-center gap-5 py-6 transition-all duration-500 hover:px-6 hover:-mx-6 rounded-sm hover:bg-white/[0.02]"
-                                    >
-                                        {/* Sector Image/Icon */}
-                                        <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full ring-1 ring-white/20 transition-all duration-300 group-hover:ring-[#C8A97E]">
-                                            <Image
-                                                src={imageSrc}
-                                                alt={sectorName}
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                            />
-                                        </div>
-
-                                        {/* Sector Name */}
-                                        <div className="flex-1">
-                                            <h4 className="font-serif text-lg tracking-wide text-neutral-300 transition-colors group-hover:text-white">
-                                                {sectorName}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                        <div className="border-b border-white/10 md:border-none">
+                            <SectorColumn sectors={rightSectors} />
                         </div>
                     </div>
                 </FadeIn>

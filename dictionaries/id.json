@@ -5,7 +5,9 @@
         "partners": "Tim",
         "practices": "Bidang Praktik & Sektor Bisnis",
         "career": "Karir",
-        "contact": "Hubungi Kami"
+        "contact": "Hubungi Kami",
+        "closeMenu": "Tutup",
+        "language": "Bahasa"
     },
     "home": {
         "title": "Unlocking potential, safeguarding success",
@@ -101,6 +103,8 @@
         "subtitle": "Keahlian Hukum Komprehensif",
         "headerText": "Kami fokus pada Bidang praktik berikut:",
         "learnMore": "Selengkapnya",
+        "sidebarLabel": "Bidang Praktik",
+        "sidebarClose": "Tutup",
         "sectors": {
             "label": "Sektor Bisnis",
             "title": "Industri yang Kami Layani",
@@ -216,6 +220,10 @@
         "formSubject": "Subjek",
         "formMessage": "Bagaimana kami dapat membantu Anda?",
         "formSubmit": "Kirim Pesan",
+        "formSending": "Mengirim...",
+        "formSuccessTitle": "Terima kasih atas pesan Anda.",
+        "formSuccessBody": "Balasan akan dikirimkan sesegera mungkin.",
+        "formSuccessReset": "Kirim pesan lain",
         "mapTitle": "Lokasi Kami"
     },
     "cta": {
@@ -230,6 +238,7 @@
         "description": "Kami selalu mencari profesional hukum berbakat yang memiliki komitmen terhadap keunggulan, integritas, dan layanan klien. Jika Anda memiliki passion di bidang hukum dan ingin mengembangkan karir di lingkungan yang dinamis dan mendukung, kami mengundang Anda untuk mengeksplorasi peluang bersama kami.",
         "applyTitle": "Cara Melamar",
         "applyDescription": "Jika Anda tertarik untuk bergabung dengan tim kami, silakan kirimkan CV, surat lamaran, dan transkrip akademik ke alamat email di bawah ini. Kami meninjau lamaran secara berkelanjutan dan akan menghubungi kandidat yang sesuai untuk wawancara.",
-        "emailLabel": "Kirim lamaran Anda ke"
+        "emailLabel": "Kirim lamaran Anda ke",
+        "email": ""
     }
 }

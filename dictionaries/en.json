@@ -5,7 +5,9 @@
         "partners": "People",
         "practices": "Practice Areas & Business Sectors",
         "career": "Career",
-        "contact": "Contact"
+        "contact": "Contact",
+        "closeMenu": "Close",
+        "language": "Language"
     },
     "home": {
         "title": "Unlocking potential, safeguarding success",
@@ -103,6 +105,8 @@
         "subtitle": "Comprehensive Legal Expertise",
         "headerText": "We focus on the following practice areas:",
         "learnMore": "Learn More",
+        "sidebarLabel": "Practice Area",
+        "sidebarClose": "Close",
         "sectors": {
             "label": "Industries",
             "title": "Business Sectors",
@@ -218,6 +222,10 @@
         "formSubject": "Subject",
         "formMessage": "How can we assist you?",
         "formSubmit": "Submit Inquiry",
+        "formSending": "Sending...",
+        "formSuccessTitle": "Thank you for your inquiry.",
+        "formSuccessBody": "A response will be sent as soon as possible.",
+        "formSuccessReset": "Send another message",
         "mapTitle": "Our Location"
     },
     "cta": {
