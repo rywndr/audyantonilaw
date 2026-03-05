@@ -24,6 +24,19 @@ body {
     font-family: var(--font-lora), serif;
 }
 
+/* Smooth scrolling with momentum easing so the page decelerates naturally at
+   boundaries instead of snapping to a hard stop. Respects the user's OS-level
+   reduced-motion preference by falling back to instant scroll. */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 h1,
 h2,
 h3,

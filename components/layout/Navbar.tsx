@@ -92,25 +92,31 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                         </div>
                     </Link>
 
-                    {/* Hamburger menu */}
-                    {!isMenuOpen && (
-                        <button
-                            className="group relative z-50 flex h-10 w-10 flex-col items-end justify-center gap-1.5 p-1 focus:outline-none"
-                            onClick={() => setIsMenuOpen(true)}
-                            aria-label="Open menu"
-                            aria-expanded={isMenuOpen}
-                        >
-                            <span
-                                className={`block h-0.5 w-8 transition-all duration-300 ${burgerColorClass}`}
-                            />
-                            <span
-                                className={`block h-0.5 w-6 transition-all duration-300 group-hover:w-8 ${burgerColorClass}`}
-                            />
-                            <span
-                                className={`block h-0.5 w-4 transition-all duration-300 group-hover:w-8 ${burgerColorClass}`}
-                            />
-                        </button>
-                    )}
+                    {/* Hamburger button — always mounted so it stays in the tab order.
+                        Hidden visually when the sidebar is open to avoid two focusable
+                        triggers competing; the sidebar's own close button takes over. */}
+                    <button
+                        className={`group relative z-50 flex h-10 w-10 flex-col items-end justify-center gap-1.5 p-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+                            isScrolled
+                                ? "focus-visible:outline-gray-900"
+                                : "focus-visible:outline-white"
+                        } ${isMenuOpen ? "pointer-events-none opacity-0" : "opacity-100"} transition-opacity duration-200`}
+                        onClick={() => setIsMenuOpen(true)}
+                        aria-label="Open menu"
+                        aria-expanded={isMenuOpen}
+                        aria-controls="site-sidebar"
+                        tabIndex={isMenuOpen ? -1 : 0}
+                    >
+                        <span
+                            className={`block h-0.5 w-8 transition-all duration-300 ${burgerColorClass}`}
+                        />
+                        <span
+                            className={`block h-0.5 w-6 transition-all duration-300 group-hover:w-8 ${burgerColorClass}`}
+                        />
+                        <span
+                            className={`block h-0.5 w-4 transition-all duration-300 group-hover:w-8 ${burgerColorClass}`}
+                        />
+                    </button>
                 </div>
             </nav>
             <Sidebar
