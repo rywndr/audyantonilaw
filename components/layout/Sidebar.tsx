@@ -81,6 +81,7 @@ export default function Sidebar({ isOpen, onClose, lang, dict }: SidebarProps) {
 
                     {/* Sidebar */}
                     <motion.aside
+                        id="site-sidebar"
                         initial={{ x: "100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
